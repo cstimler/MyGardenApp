@@ -1,16 +1,11 @@
-# My Garden
-Android AppWidgets lesson
+App Overview:
 
-## The app
-My Garden is a simple game that allows you to add plants to your garden and keep them alive by watering them on time.
-The app illustrates the power of widgets and collection widgets by making it easier for the user to monitor and water their plants from the home screen
+My Garden is a simple game that allows you to add plants to your garden and keep them alive by watering them on time. The app illustrates the power of widgets and collection widgets by making it easier for the user to monitor and water their plants from the home screen
 
-## Screenshots
+Commits:
 
-![Screenshot1](screenshots/screen_1.png) ![Screenshot2](screenshots/screen_2.png) ![Screenshot3](screenshots/screen_3.png)
-![Screenshot4](screenshots/screen_4.png) ![Screenshot5](screenshots/screen_5.png) 
+First commit: starter code.
 
-## Image resources
-https://pixabay.com/en/sapling-plant-growing-seedling-154734/
-https://pixabay.com/en/cactus-cacti-plant-thorns-spiky-152378/
-https://pixabay.com/en/the-background-background-design-352165/
+The second commit: Widget is added to home screen by adding the proper activity and XML files, and then defining the pending intent that launches the MainActivity of the app from the widget.
+
+This third commit: The widget is now provided with a "watering service" that operates in the background once the home screen widget is clicked.  The logic identifies all living plants (plants that have exceeded their maximum unwatered time are 'dead') and then waters them, essentially resetting their "last watered time" in the process - this is done by adding an additional pending intent that launches this service.  The previous intent still opens the app when the user clicks on the widget.
