@@ -26,6 +26,7 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -81,6 +82,7 @@ public class MainActivity
     public void onPlantClick(View view) {
         ImageView imgView = (ImageView) view.findViewById(R.id.plant_list_item_image);
         long plantId = (long) imgView.getTag();
+        Log.e("CESSS:onplantclick", String.valueOf(plantId));
         Intent intent = new Intent(getBaseContext(), PlantDetailActivity.class);
         intent.putExtra(PlantDetailActivity.EXTRA_PLANT_ID, plantId);
         startActivity(intent);
