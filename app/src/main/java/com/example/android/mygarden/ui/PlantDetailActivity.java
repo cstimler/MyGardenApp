@@ -56,6 +56,7 @@ public class PlantDetailActivity extends AppCompatActivity
     }
 
     public void onBackButtonClick(View view) {
+
         finish();
     }
 
