@@ -27,6 +27,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import com.example.android.mygarden.provider.PlantContract;
 import com.example.android.mygarden.ui.MainActivity;
 import com.example.android.mygarden.ui.PlantDetailActivity;
 
@@ -40,8 +41,13 @@ public class PlantWidgetProvider extends AppWidgetProvider {
         // or the MainActivity if plant ID is invalid
         // Create an Intent to launch MainActivity when clicked
         Log.e("CESSS, in updateAppW", "id = " + String.valueOf(plantId));
-        Intent intent = new Intent(context, PlantDetailActivity.class);
-        intent.putExtra(PlantDetailActivity.EXTRA_PLANT_ID, plantId);
+        Intent intent;
+        if (plantId == PlantContract.INVALID_PLANT_ID) {
+            intent = new Intent(context, MainActivity.class);
+        } else {
+            intent = new Intent(context, PlantDetailActivity.class);
+            intent.putExtra(PlantDetailActivity.EXTRA_PLANT_ID, plantId);
+        }
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.plant_widget);
@@ -55,6 +61,7 @@ public class PlantWidgetProvider extends AppWidgetProvider {
         // Add the wateringservice click handler
         Intent wateringIntent = new Intent(context, PlantWateringService.class);
         wateringIntent.setAction(PlantWateringService.ACTION_WATER_PLANT);
+        wateringIntent.putExtra(PlantWateringService.EXTRA_PLANT_ID, plantId);
         PendingIntent wateringPendingIntent = PendingIntent.getService(context, 0, wateringIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.widget_water_button, wateringPendingIntent);
         // Instruct the widget manager to update the widget
